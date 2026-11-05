@@ -54,3 +54,4 @@ if (mercyAdjustedStudents.length) {
 
 console.log(`\nمتوسط المتعثرين بعد الرأفة: ${Student.calculateMercyAverage(strugglingStudents).toFixed(2)}`);
 console.log(`متوسط الرأفة العام: ${mercyAverage.toFixed(2)}`);
+console.log('========================================');
