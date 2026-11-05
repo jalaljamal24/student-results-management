@@ -7,12 +7,17 @@ const studentsList = [
   new Student(4, 'Maha', [46, 45, 44], 72),
 ];
 
-console.log('=== تقرير الطلاب ===');
+console.log('========================================');
+console.log('          تقرير الطلاب الأكاديمي');
+console.log('========================================');
+
 studentsList.forEach((student) => {
   const average = student.calculateAverage();
-  console.log(
-    `الاسم: ${student.name} | المتوسط: ${average.toFixed(2)} | التقدير: ${student.getGrade(average)} | النتيجة: ${student.getFinalResult()}`
-  );
+  console.log(`اسم الطالب: ${student.name}`);
+  console.log(`المتوسط: ${average.toFixed(2)}`);
+  console.log(`التقدير: ${student.getGrade(average)}`);
+  console.log(`الحالة: ${student.getFinalResult()}`);
+  console.log('----------------------------------------');
 });
 
 const strugglingStudents = studentsList.filter((student) => {
@@ -32,16 +37,20 @@ const mercyAdjustedStudents = strugglingStudents.map((student) => {
 const mercyTotal = mercyAdjustedStudents.reduce((sum, student) => sum + student.adjustedAverage, 0);
 const mercyAverage = mercyAdjustedStudents.length ? mercyTotal / mercyAdjustedStudents.length : 0;
 
-console.log('\n=== الطلاب المتعثرون الذين شملتهم الرأفة ===');
+console.log('\n========================================');
+console.log('     الطلاب المتعثرون المستهدفون بالرأفة');
+console.log('========================================');
+
 if (mercyAdjustedStudents.length) {
   mercyAdjustedStudents.forEach((student) => {
-    console.log(
-      `الاسم: ${student.name} | المتوسط الجديد: ${student.adjustedAverage.toFixed(2)} | التقدير: ${student.adjustedGrade}`
-    );
+    console.log(`اسم الطالب: ${student.name}`);
+    console.log(`المتوسط بعد الرأفة: ${student.adjustedAverage.toFixed(2)}`);
+    console.log(`التقدير الجديد: ${student.adjustedGrade}`);
+    console.log('----------------------------------------');
   });
 } else {
   console.log('لا يوجد طلاب متعثرون في القائمة.');
 }
 
-console.log(`\n=== متوسط درجات الطلاب المتعثرين بعد التعديل === ${Student.calculateMercyAverage(strugglingStudents).toFixed(2)}`);
-console.log(`=== متوسط الرأفة المحسوب من المصفوفة المعدلة === ${mercyAverage.toFixed(2)}`);
+console.log(`\nمتوسط المتعثرين بعد الرأفة: ${Student.calculateMercyAverage(strugglingStudents).toFixed(2)}`);
+console.log(`متوسط الرأفة العام: ${mercyAverage.toFixed(2)}`);
