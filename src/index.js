@@ -1,7 +1,7 @@
 import Student from './Student.js';
 
 const studentsList = [
-  new Student(1, 'Ali', [78, 82, 90], 88),
+  new Student(1, 'Jalal', [78, 82, 90], 88),
   new Student(2, 'Sara', [52, 57, 49], 80),
   new Student(3, 'Omar', [42, 39, 44], 76),
   new Student(4, 'Maha', [46, 45, 44], 72),
