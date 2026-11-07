@@ -26,9 +26,11 @@ const strugglingStudents = studentsList.filter((student) => {
 });
 
 const mercyAdjustedStudents = strugglingStudents.map((student) => {
-  const adjustedAverage = student.calculateAverage() + 5;
+  const originalAverage = student.calculateAverage();
+  const adjustedAverage = originalAverage + 5;
   return {
     ...student,
+    originalAverage,
     adjustedAverage,
     adjustedGrade: student.getGrade(adjustedAverage),
   };
@@ -56,3 +58,56 @@ if (mercyAdjustedStudents.length) {
 console.log(`\nمتوسط المتعثرين بعد الرأفة: ${Student.calculateMercyAverage(strugglingStudents).toFixed(2)}`);
 console.log(`متوسط الرأفة العام: ${mercyAverage.toFixed(2)}`);
 console.log('========================================');
+
+if (typeof document !== 'undefined') {
+  const setText = (selector, value) => {
+    document.querySelector(selector).textContent = value;
+  };
+
+  const appendCells = (row, values) => {
+    values.forEach(({ value, className = '' }) => {
+      const cell = document.createElement('td');
+      cell.textContent = value;
+      cell.className = className;
+      row.append(cell);
+    });
+  };
+
+  setText('#student-count', studentsList.length);
+  setText('#passed-count', studentsList.filter((student) => student.getFinalResult() === 'ناجح').length);
+  setText('#mercy-count', mercyAdjustedStudents.length);
+  setText('#mercy-average', mercyAverage.toFixed(2));
+
+  const studentRows = document.querySelector('#student-rows');
+  studentsList.forEach((student) => {
+    const average = student.calculateAverage();
+    const result = student.getFinalResult();
+    const row = document.createElement('tr');
+    appendCells(row, [
+      { value: student.name, className: 'student-name' },
+      { value: student.id },
+      { value: student.grades.join(' / ') },
+      { value: average.toFixed(2) },
+      { value: student.getGrade(average) },
+      { value: `${student.attendance}%` },
+      { value: result, className: result === 'ناجح' ? 'result-pass' : 'result-review' },
+    ]);
+    studentRows.append(row);
+  });
+
+  const mercyRows = document.querySelector('#mercy-rows');
+  mercyAdjustedStudents.forEach((student) => {
+    const row = document.createElement('tr');
+    appendCells(row, [
+      { value: student.name, className: 'student-name' },
+      { value: student.id },
+      { value: student.originalAverage.toFixed(2) },
+      { value: student.adjustedAverage.toFixed(2) },
+      { value: student.adjustedGrade },
+    ]);
+    mercyRows.append(row);
+  });
+
+  document.querySelector('#mercy-table-wrap').hidden = mercyAdjustedStudents.length === 0;
+  document.querySelector('#mercy-empty').hidden = mercyAdjustedStudents.length > 0;
+}
