@@ -40,6 +40,7 @@ const mercyAverage = mercyAdjustedStudents.length ? mercyTotal / mercyAdjustedSt
 console.log('\n========================================');
 console.log('     الطلاب المتعثرون المستهدفون بالرأفة');
 console.log('========================================');
+console.log('مصفوفة الطلاب بعد تطبيق الرأفة:', mercyAdjustedStudents);
 
 if (mercyAdjustedStudents.length) {
   mercyAdjustedStudents.forEach((student) => {

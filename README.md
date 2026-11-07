@@ -30,6 +30,7 @@ student-results-management/
 ├── src/
 │   ├── Student.js
 │   └── index.js
+├── index.html
 ├── tests/
 │   └── student.test.js
 ├── README.md
@@ -55,6 +56,28 @@ node src/index.js
 cd "C:\Users\jalal\Desktop\نظام إدارة وتحليل نتائج الطلاب"
 set PATH=C:\Program Files\nodejs;%PATH%
 npm test
+```
+
+### 3) عرض النتائج في Console المتصفح
+
+ثبّت الاعتماديات مرة واحدة:
+
+```powershell
+npm install
+```
+
+ثم شغّل خادم التطوير:
+
+```powershell
+npm run dev
+```
+
+افتح رابط الخادم المحلي الذي يظهر في الطرفية، ثم افتح Developer Tools وانتقل إلى تبويب Console لرؤية تقرير الطلاب ومخرجات الرأفة. لا تفتح `index.html` مباشرة كملف محلي، لأن استيراد ملفات JavaScript كـ modules يحتاج إلى خادم محلي.
+
+للتأكد من جاهزية نسخة البناء:
+
+```powershell
+npm run build
 ```
 
 ## مثال الإخراج
