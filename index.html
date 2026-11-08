@@ -4,31 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>نظام إدارة وتحليل نتائج الطلاب</title>
+    <meta
+      name="description"
+      content="لوحة أكاديمية لإدارة نتائج الطلاب وتحليل المتوسطات والتقديرات والحضور وحالات الرأفة."
+    />
+    <meta name="theme-color" content="#123f38" />
     <link rel="stylesheet" href="./src/styles.css" />
   </head>
   <body>
     <header class="page-header">
-      <div class="page-width">
-        <p class="eyebrow">السجل الأكاديمي</p>
-        <h1>نتائج الطلاب</h1>
+      <div class="page-width header-content">
+        <div class="brand-label"><span class="brand-mark" aria-hidden="true">✦</span><span>السجل الأكاديمي</span></div>
+        <p class="eyebrow">نظرة شاملة على الأداء الدراسي</p>
+        <h1>لوحة نتائج الطلاب</h1>
+        <p class="header-description">ملخص واضح للنتائج الأكاديمية، ومتابعة الطلاب المستحقين للدعم وفق معايير النجاح والحضور.</p>
       </div>
     </header>
     <main class="page-width">
       <section class="summary" aria-label="ملخص النتائج">
-        <div class="metric"><span>إجمالي الطلاب</span><strong id="student-count">0</strong></div>
-        <div class="metric"><span>الطلاب الناجحون</span><strong id="passed-count">0</strong></div>
-        <div class="metric"><span>طلاب الرأفة</span><strong id="mercy-count">0</strong></div>
-        <div class="metric metric--accent"><span>متوسط الرأفة</span><strong id="mercy-average">0.00</strong></div>
+        <div class="metric"><span>إجمالي الطلاب</span><strong id="student-count" aria-live="polite">0</strong></div>
+        <div class="metric"><span>الطلاب الناجحون</span><strong id="passed-count" aria-live="polite">0</strong></div>
+        <div class="metric"><span>طلاب الرأفة</span><strong id="mercy-count" aria-live="polite">0</strong></div>
+        <div class="metric metric--accent"><span>متوسط الرأفة</span><strong id="mercy-average" aria-live="polite">0.00</strong></div>
       </section>
 
       <section class="report-section" aria-labelledby="students-title">
         <div class="section-heading">
           <div><p class="eyebrow">النتائج الأساسية</p><h2 id="students-title">تقرير الطلاب</h2></div>
+          <p class="table-note">البيانات المعروضة تجريبية</p>
         </div>
         <div class="table-scroll">
           <table>
-            <thead><tr><th>الطالب</th><th>رقم الجلوس</th><th>الدرجات</th><th>المتوسط</th><th>التقدير</th><th>الحضور</th><th>النتيجة</th></tr></thead>
-            <tbody id="student-rows"></tbody>
+            <caption class="visually-hidden">نتائج الطلاب وتشمل الدرجات والمتوسط والتقدير والحضور والنتيجة النهائية</caption>
+            <thead><tr><th scope="col">الطالب</th><th scope="col">رقم الجلوس</th><th scope="col">الدرجات</th><th scope="col">المتوسط</th><th scope="col">التقدير</th><th scope="col">الحضور</th><th scope="col">النتيجة</th></tr></thead>
+            <tbody id="student-rows" aria-live="polite"></tbody>
           </table>
         </div>
       </section>
@@ -40,13 +49,18 @@
         </div>
         <div class="table-scroll" id="mercy-table-wrap">
           <table>
-            <thead><tr><th>الطالب</th><th>رقم الجلوس</th><th>قبل الرأفة</th><th>بعد الرأفة</th><th>التقدير الجديد</th></tr></thead>
-            <tbody id="mercy-rows"></tbody>
+            <caption class="visually-hidden">الطلاب المتعثرون ومتوسطاتهم وتقديراتهم قبل وبعد الرأفة</caption>
+            <thead><tr><th scope="col">الطالب</th><th scope="col">رقم الجلوس</th><th scope="col">قبل الرأفة</th><th scope="col">بعد الرأفة</th><th scope="col">التقدير الجديد</th></tr></thead>
+            <tbody id="mercy-rows" aria-live="polite"></tbody>
           </table>
         </div>
         <p class="empty-state" id="mercy-empty" hidden>لا يوجد طلاب متعثرون في القائمة.</p>
       </section>
     </main>
+    <footer class="page-width page-footer">
+      <p>نظام إدارة وتحليل نتائج الطلاب</p>
+      <p>تُحدَّد النتائج وفق المتوسط الدراسي ونسبة الحضور.</p>
+    </footer>
     <script type="module" src="./src/index.js"></script>
   </body>
 </html>

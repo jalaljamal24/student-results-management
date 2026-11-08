@@ -64,8 +64,10 @@ if (typeof document !== 'undefined') {
   const appendCells = (row, values) => {
     values.forEach(({ value, className = '' }) => {
       const cell = document.createElement('td');
-      cell.textContent = value;
       cell.className = className;
+      const content = document.createElement('span');
+      content.textContent = value;
+      cell.append(content);
       row.append(cell);
     });
   };
@@ -83,7 +85,7 @@ if (typeof document !== 'undefined') {
       { value: student.id },
       { value: student.grades.join(' / ') },
       { value: average.toFixed(2) },
-      { value: grade },
+      { value: grade, className: 'grade-badge' },
       { value: `${student.attendance}%` },
       { value: result, className: result === 'ناجح' ? 'result-pass' : 'result-review' },
     ]);
@@ -98,7 +100,7 @@ if (typeof document !== 'undefined') {
       { value: student.id },
       { value: originalAverage.toFixed(2) },
       { value: adjustedAverage.toFixed(2) },
-      { value: adjustedGrade },
+      { value: adjustedGrade, className: 'grade-badge' },
     ]);
     mercyRows.append(row);
   });
