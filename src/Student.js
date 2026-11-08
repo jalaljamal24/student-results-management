@@ -34,17 +34,4 @@ export default class Student {
     const average = this.calculateAverage();
     return average >= 50 && this.attendance >= 75 ? 'ناجح' : 'يحتاج مراجعة';
   }
-
-  static calculateMercyAverage(students) {
-    if (!students.length) {
-      return 0;
-    }
-
-    const total = students.reduce((sum, student) => {
-      const adjustedAverage = student.calculateAverage() + 5;
-      return sum + adjustedAverage;
-    }, 0);
-
-    return total / students.length;
-  }
 }
